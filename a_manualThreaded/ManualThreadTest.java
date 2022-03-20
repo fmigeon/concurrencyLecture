@@ -26,15 +26,21 @@ public class ManualThreadTest {
 		ManualThread thread = new ManualThread();
 		thread.start();
 		
-		try { this.wait(1000); }
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-		/* test passes but obly because we wait enough.
+		waitNow(1000);
+
+		/* test passes but only because we wait enough.
 		 * If DURATION is lowered, test don't pass anymore.
 		 */
 		assertEquals(DURATION, thread.getSum());
 	}
 	
+	public synchronized void waitNow(long time) {
+		try {
+			this.wait(time);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
 
 }

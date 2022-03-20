@@ -7,13 +7,13 @@ public class View {
 	public synchronized void updateView() {
 		Object o = myModel.getSomething();
 	}
-	public synchronized void somethingChanged() {
-		doSomething();
+	public synchronized void somethingChanged(int updateCount) {
+		doSomething(updateCount);
 	}
 	public void setMyModel(Model myModel) {
 		this.myModel = myModel;
 	}
-	private void doSomething() {
-		System.out.println("Something done on the view");
+	private void doSomething(int count) {
+		System.out.println("Something done on the view : "+count);
 	}
 }

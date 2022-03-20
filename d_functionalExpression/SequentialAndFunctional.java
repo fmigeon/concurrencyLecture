@@ -31,29 +31,29 @@ public class SequentialAndFunctional {
 	public static void main(String[] args) {
 		SequentialAndFunctional test = new SequentialAndFunctional();
 
-		long startTime = System.currentTimeMillis();
+		double startTime = System.nanoTime();
 		for (int callNb = 0; callNb < NB_CALL_FOR_STAT; callNb++) {
 			test.g(1000);
 		}
-		long endTime = System.currentTimeMillis();
+		double endTime = System.nanoTime();
 		double elapsedTime = (endTime - startTime);
-		System.out.println("Execution time for g : " + elapsedTime);
+		System.out.println("Mean execution time for g : " + elapsedTime/NB_CALL_FOR_STAT/1000000 + " ms.");
 
-		startTime = System.currentTimeMillis();
+		startTime = System.nanoTime();
 		for (int callNb = 0; callNb < NB_CALL_FOR_STAT; callNb++) {
 			test.sequential(1000);
 		}
-		endTime = System.currentTimeMillis();
+		endTime = System.nanoTime();
 		elapsedTime = (endTime - startTime);
-		System.out.println("Execution time for sequential : " + elapsedTime);
+		System.out.println("Mean execution time for sequential : " + elapsedTime/NB_CALL_FOR_STAT/1000000 + " ms.");
 
-		startTime = System.currentTimeMillis();
+		startTime = System.nanoTime();
 		for (int callNb = 0; callNb < NB_CALL_FOR_STAT; callNb++) {
 			test.functional(1000);
 		}
-		endTime = System.currentTimeMillis();
+		endTime = System.nanoTime();
 		elapsedTime = (endTime - startTime);
-		System.out.println("Execution time for functional : " + elapsedTime);
+		System.out.println("Mean execution time for functional : " + elapsedTime/NB_CALL_FOR_STAT/1000000 + " ms.");
 
 	}
 

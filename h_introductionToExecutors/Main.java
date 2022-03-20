@@ -12,8 +12,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Runnable task;
-		Callable computation;
+		Runnable taskDeclaration;
+		Callable computationDeclaration;
 		Executor executor;
 		ExecutorService service;
 		
@@ -28,7 +28,8 @@ public class Main {
 			e.printStackTrace();
 		}
 		
-		Future<String> waitingResultingString = service.submit(() -> { Main.veryLongComputation(); return "Execution of Callable<String> computation which value is obtained by a Future";});
+		System.out.print("\nExecution of a long Callable<String> computation...");
+		Future<String> waitingResultingString = service.submit(() -> { Main.veryLongComputation(); return "...which value is obtained by a Future";});
 		try {
 			System.out.println(waitingResultingString.get());
 		} catch (InterruptedException | ExecutionException e) {
@@ -36,10 +37,11 @@ public class Main {
 			e.printStackTrace();
 		}
 		
+		System.out.println("\nExecution of another medium-size Callable<String> computation...");
 		Future<Long> simpleLongResult = service.submit(()-> fib(10));
-		while(!simpleLongResult.isDone()) System.out.println("J'attends");
+		while(!simpleLongResult.isDone()) System.out.println("Waiting...");
 		try {
-			System.out.println("Resultat obtenu : "+simpleLongResult.get());
+			System.out.println("Result : "+simpleLongResult.get());
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

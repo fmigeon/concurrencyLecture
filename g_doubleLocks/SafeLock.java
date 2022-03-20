@@ -70,7 +70,7 @@ public class SafeLock {
 
 		public void run() {
 			Random random = new Random();
-			for (;;) {
+			for (int i=0;i<100;i++) {
 				try {
 					Thread.sleep(random.nextInt(10));
 				} catch (InterruptedException e) {

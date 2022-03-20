@@ -47,7 +47,7 @@ public class BasicStreamingPipe {
 				new Person("Marie", LocalDate.of(2005, 3, 12), Sex.FEMALE, "marie.eiram@me.com"),
 				new Person("Pierre", LocalDate.of(2010, 8, 15), Sex.MALE, "pierre.erreip@me.com") };
 
-		long startTime = System.currentTimeMillis();
+		double startTime = System.nanoTime();
 		
 		double average = Arrays.stream(roster)
 				.filter(p -> p.getGender() == Sex.MALE)
@@ -56,20 +56,33 @@ public class BasicStreamingPipe {
 				.getAsDouble();
 		System.out.println("moyenne par stream / pipeline : " + average);
 		
-		long endTime = System.currentTimeMillis();
+		double endTime = System.nanoTime();
 		double elapsedTime = (endTime - startTime);
-		System.out.println("Execution time for streaming average : " + elapsedTime);
+		System.out.println("Execution time for sequential streaming average : " + elapsedTime/1000000 + " ms.");
 
-		startTime = System.currentTimeMillis();
+		startTime = System.nanoTime();
+		
+		average = Arrays.stream(roster).parallel()
+				.filter(p -> p.getGender() == Sex.MALE)
+				.mapToInt(Person::getAge)
+				.average()
+				.getAsDouble();
+		System.out.println("moyenne par stream / pipeline : " + average);
+		
+		endTime = System.nanoTime();
+		elapsedTime = (endTime - startTime);
+		System.out.println("Execution time for parallel streaming average : " + elapsedTime/1000000 + " ms.");
+
+		startTime = System.nanoTime();
 		
 		Person[] filtered = handmadeFilter(roster, p -> p.getGender() == Sex.MALE);
 		Integer[] mapped = handmadeMapToInt(filtered, Person::getAge);
 		average = handmadeAverage(mapped);
 		System.out.println("moyenne par séquence de méthodes: " + average);
 		
-		endTime = System.currentTimeMillis();
+		endTime = System.nanoTime();
 		elapsedTime = (endTime - startTime);
-		System.out.println("Execution time for classic average : " + elapsedTime);
+		System.out.println("Execution time for classic average : " + elapsedTime/1000000 + " ms.");
 
 	}
 	

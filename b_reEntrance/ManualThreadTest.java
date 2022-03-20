@@ -51,22 +51,22 @@ public class ManualThreadTest {
 		assertEquals(TEN_THREADS * HUNDRED_COMPUTATIONS, summation.getSum());
 	}
 
-//	@Test
-//	public void tenThreadsDoingThousandComputation() {
-//		long startTime = System.currentTimeMillis();
-//
-//		BasicObject summation = new BasicObject();
-//		for (int i = 0; i < TEN_THREADS; i++) {
-//			new SharedObjectManualThread(summation,THOUSAND_COMPUTATIONS).start();
-//		}
-//		
-//		waitNow(LONG_TIME);
-//		long endTime = System.currentTimeMillis();
-//		long elapsedTime = (endTime - startTime);
-//		System.out.println("Execution time for very long test : " + elapsedTime);
-//				
-//		assertEquals(TEN_THREADS * THOUSAND_COMPUTATIONS, summation.getSum());
-//	}
+	@Test
+	public void tenThreadsDoingThousandComputation() {
+		long startTime = System.currentTimeMillis();
+
+		BasicObject summation = new BasicObject();
+		for (int i = 0; i < TEN_THREADS; i++) {
+			new SharedObjectManualThread(summation,THOUSAND_COMPUTATIONS).start();
+		}
+		
+		waitNow(LONG_TIME);
+		long endTime = System.currentTimeMillis();
+		long elapsedTime = (endTime - startTime);
+		System.out.println("Execution time for very long test : " + elapsedTime);
+				
+		assertEquals(TEN_THREADS * THOUSAND_COMPUTATIONS, summation.getSum());
+	}
 
 	public synchronized void waitNow(long time) {
 		try {

@@ -9,12 +9,14 @@ public class Main {
 		model.setMyView(view);
 		view.setMyModel(model);
 		
+		System.out.println("En séquentiel");
 		for(int i=0;i<10;i++) {
 			view.updateView();
-			model.updateModel(null);
+			model.updateModel(i);
 		}
-		System.out.println("En parallele");
-		new Thread(()->{for(int i=0;i<1000;i++) model.updateModel(null);}).start();
+		
+		System.out.println("\nEn parallele");
+		new Thread(()->{for(int i=0;i<1000;i++) model.updateModel(i);}).start();
 		for(int i=0;i<1000;i++) view.updateView();
 		
 	}

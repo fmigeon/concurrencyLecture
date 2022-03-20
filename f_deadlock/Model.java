@@ -4,9 +4,9 @@ package f_deadlock;
 
 public class Model {
 	private View myView;
-	public synchronized void updateModel(Object someArg) {
-		doSomething(someArg);
-		myView.somethingChanged();
+	public synchronized void updateModel(int updateCount) {
+		doSomething(updateCount);
+		myView.somethingChanged(updateCount);
 	}
 
 	public synchronized Object getSomething() {
@@ -22,8 +22,8 @@ public class Model {
 		return null;
 	}
 
-	private void doSomething(Object someArg) {
-		System.out.println("Something done on the model");
+	private void doSomething(int count) {
+		System.out.println("Something done on the model : "+count);
 	}
 
 }
