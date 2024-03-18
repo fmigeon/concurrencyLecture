@@ -26,12 +26,12 @@ public class ManualThreadTest {
 		ManualThread thread = new ManualThread();
 		thread.start();
 		
-		waitNow(1000);
+		waitNow(DURATION);
 
 		/* test passes but only because we wait enough.
 		 * If DURATION is lowered, test don't pass anymore.
 		 */
-		assertEquals(DURATION, thread.getSum());
+		assertEquals(100000, thread.getSum());
 	}
 	
 	public synchronized void waitNow(long time) {

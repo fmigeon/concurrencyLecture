@@ -2,26 +2,29 @@ package h_introductionToExecutors;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import java.util.function.Function;
 
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		Runnable taskDeclaration;
-		Callable computationDeclaration;
-		Executor executor;
+		Callable<String> computationDeclaration;
 		ExecutorService service;
 		
+		System.out.println("Preparation to submit a task");
 		service = Executors.newCachedThreadPool();
-		service.submit(() -> {System.out.println("Execution of Runnable task from submit operation");});
+		taskDeclaration = () -> {System.out.println("Execution of Runnable task from submit operation\n");};
+		service.submit(taskDeclaration);
+		System.out.println("Task submitted...");
 		
-		Future<String> resultingString = service.submit(() -> "Execution of Callable<String> computation which value is obtained by a Future");
+		System.out.println("\nPreparation to submit a calculation");
+		computationDeclaration = () -> "Execution of Callable<String> computation which value is obtained by a Future";
+		Future<String> resultingString = service.submit(computationDeclaration);
+		System.out.println("Calculation submitted...");
 		try {
+			System.out.println("Result requested...");
 			System.out.println(resultingString.get());
 		} catch (InterruptedException | ExecutionException e) {
 			// TODO Auto-generated catch block

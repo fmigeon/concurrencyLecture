@@ -3,11 +3,13 @@ package b_reEntrance;
 
 public class BasicObject {
 
+//	Adding a static counter could be useful to control the number of 'setSum'	
+//	static int count =0;
 	private int sum = 0;
 	
 	public void calculate() {
 		setSum(getSum()+1);
-
+		
 //		int val = getSum();
 //		val++;
 //		fib(30);
@@ -15,7 +17,8 @@ public class BasicObject {
 	}
 
 	private void setSum(int sum) {
-		System.out.println(Thread.currentThread().getId()+" setting sum to "+sum);
+//		System.out.println("Msg #"+(++count)+" "+Thread.currentThread().getId()+" setting sum to "+(++this.sum));
+		System.out.println(+Thread.currentThread().getId()+" setting sum to "+sum);
 		this.sum = sum;
 	}
 
