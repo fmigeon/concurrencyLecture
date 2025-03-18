@@ -15,4 +15,9 @@ public class ManualThread extends Thread {
 	public int getSum() {
 		return summation.getSum();
 	}
+	
+	public static void main(String[] args) {
+		ManualThread mt = new ManualThread();
+		mt.start();
+	}
 }

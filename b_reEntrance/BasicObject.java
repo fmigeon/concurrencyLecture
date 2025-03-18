@@ -17,8 +17,6 @@ public class BasicObject {
 	}
 
 	private void setSum(int sum) {
-//		setCount(getCount()+1);
-//		System.out.println("Msg # "+ count +" : "+Thread.currentThread().getId()+" setting sum to "+(++this.sum));
 		System.out.println(+Thread.currentThread().getId()+" setting sum to "+sum);
 		this.sum = sum;
 	}
@@ -26,19 +24,10 @@ public class BasicObject {
 	public int getSum() {
 		return sum;
 	}
-	
-//	static int getCount() {
-//		return count;
-//	}
-//	
-//	static void setCount (int c) {
-//		count = c;
-//	}
-	
+		
 	private static long fib(int n) {
 		if (n < 2) return 1;
 		else return fib(n-1)+fib(n-2);
 	}
-
 	
 }
