@@ -8,6 +8,8 @@ import java.util.concurrent.Future;
 
 public class Main {
 
+	private static final int MEDIUM_WAITING_DURATION = 10;
+	private static final int LONG_WAITING_DURATION = 45;
 	public static void main(String[] args) {
 		Runnable taskDeclaration;
 		Callable<String> computationDeclaration;
@@ -15,7 +17,7 @@ public class Main {
 		
 		System.out.println("Preparation to submit a task");
 		service = Executors.newCachedThreadPool();
-		taskDeclaration = () -> {System.out.println("Execution of Runnable task from submit operation\n");};
+		taskDeclaration = () -> System.out.println("Execution of Runnable task from submit operation\n");
 		service.submit(taskDeclaration);
 		System.out.println("Task submitted...");
 		
@@ -41,7 +43,7 @@ public class Main {
 		}
 		
 		System.out.println("\nExecution of another medium-size Callable<String> computation...");
-		Future<Long> simpleLongResult = service.submit(()-> fib(10));
+		Future<Long> simpleLongResult = service.submit(()-> fib(MEDIUM_WAITING_DURATION));
 		while(!simpleLongResult.isDone()) System.out.println("Waiting...");
 		try {
 			System.out.println("Result : "+simpleLongResult.get());
@@ -56,7 +58,7 @@ public class Main {
 	}
 
 	private static void veryLongComputation() {
-		fib(43);
+		fib(LONG_WAITING_DURATION);
 	}
 	private static long fib(int n) {
 		if (n < 2) return 1;
