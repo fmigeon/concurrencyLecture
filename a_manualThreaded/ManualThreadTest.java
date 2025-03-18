@@ -1,7 +1,7 @@
 // author : Fred Migeon - IRIT - Université Toulouse 3
 package a_manualThreaded;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
@@ -15,7 +15,7 @@ public class ManualThreadTest {
 		thread.start();
 		
 		/* test wont pass because thread has not finished 'starting'
-		 * (which is iterating 1000 times on calculate)
+		 * (which is iterating 100000 times on calculate)
 		 * while thread object is activated by jvm thread to get sum value
 		 */
 		assertEquals(1000, thread.getSum());
